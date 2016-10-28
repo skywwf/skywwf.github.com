@@ -19,7 +19,7 @@ $.fn.extend({
 			$('.home_h2 p').addClass('bounceInLeft');
 			},1000)
 		}else{
-			$('#home').get(0).timer;
+			clearTimeout($('#home').get(0).timer);
 			$('#home').css('display','none')
 			$('.home_h2 h2').removeClass('bounceInDown');
 			$('.home_h2 p').removeClass('bounceInLeft');
