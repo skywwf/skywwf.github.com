@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<style>
+	*{
+		padding: 0;
+		margin: 0;
+	}
+	html,body{
+		height: 100%;
+		
+		overflow: hidden;
+	}
+	div{
+		width: 600px;
+		height: 350px;
+		position: relative;
+		margin:60px auto;
+		border:10px solid #f8be0c;
+		background-size: 100% 100%;
+	}
+	span{
+		position: absolute;
+		border:1px dashed #ccc;
+		background-repeat: no-repeat;
+		box-sizing: border-box;
+	}
+	input{
+		height: 50px;
+		width: 100px;
+		margin-right: 100px;
+		background: skyblue;
+		border:none;
+		box-shadow: 0 0 15px yellow;
+	}
+	input:nth-child(1){
+		margin-left:270px;
+	}
+	p{
+		width: 800px;
+		margin:20px auto;
+	}
+	
+	b{
+		width: 180px;
+		height: 200px;
+		position: fixed;
+		right:10%;
+		bottom: 413px;
+		background: url(img/game_tab.png) no-repeat;
+		background-size: 100% 100%;
+		line-height: 200px;
+		padding-left:20px;
+		text-shadow: 10px 10px 5px green;
+	}
+	i{
+		position: absolute;
+		font-style:normal;
+		right: 0;
+		top: -90px;
+		cursor: pointer;
+	}
+</style>
+<script>
+	
+	function rnd(n,m){
+		return Math.floor(Math.random()*(m-n)+n);
+	}
+	function toDub(n){
+		return n>9?''+n:n+'0';
+	}
+	window.onload = function(){
+		var oClose = document.getElementById('close');
+		var oNotice = document.getElementById('notice');
+		oClose.onclick = function(){
+			oNotice.style.display = 'none';
+		}
+
+		var oDiv = document.querySelector('div');
+		var oSt = document.querySelector('.start');
+		var oRe = document.querySelector('.reset');
+		var oW = oDiv.offsetWidth-20;
+		var oH = oDiv.offsetHeight-20;
+		img_game();
+		//复原
+		oRe.onclick = function(){
+			oDiv.innerHTML = '';
+			img_game();
+		}
+		function img_game(){
+			// 基础位置
+			var count = 1;
+			var cOk = 1;
+			// 位置数组
+			var pos_arr = [];
+			//正确数组
+			var r_arr = [];		
+			//中间量
+			var mid = 0;
+			var R = 3;
+			var C = 3;
+			// 空位置的下标
+			var null_Pos = R*C;
+			for (var i = 0; i < R; i++) {
+				for (var j = 0; j < C; j++) {
+					if (i == R-1 && j == C-1) {continue;}
+					var oSpan = document.createElement('span');
+					oSpan.style.backgroundImage = "url(img/0.png)";
+
+					oSpan.style.width = oW/C+'px';
+					oSpan.style.height = oH/R+'px';
+					oSpan.style.left = j*oW/C+'px';
+					oSpan.r_left = j*oW/C;
+					oSpan.style.top = i*oH/R+'px';
+					oSpan.r_top = i*oH/R;
+					oSpan.pos = count++;
+					oSpan.oOk = cOk++;
+					
+					oSpan.style.backgroundPosition = -j*oW/C+'px '+(-i*oH/R)+'px';
+					pos_arr.push(toDub(oSpan.oOk)+''+-j*oW/C+'px '+(-i*oH/R)+'px');
+					r_arr.push(-j*oW/C+'px '+(-i*oH/R)+'px');
+					oDiv.appendChild(oSpan);
+				}
+			}
+			var aSpan = oDiv.children;
+			// 开始游戏
+			oSt.onclick = function(){
+				pos_arr.sort(function(){
+					return Math.random()-0.5;
+				})
+				// 数组随机排序
+				for (var i = 0; i < aSpan.length; i++) {
+					aSpan[i].style.backgroundPosition = pos_arr[i].substring(2);
+				}
+			}
+			//点击移动
+			for (var i = 0; i < aSpan.length; i++) {
+				aSpan[i].onclick = function(){
+					console.log(pos_arr);
+					switch(this.pos-null_Pos){
+						case -R:
+							mid = this.pos;
+							this.pos = null_Pos;
+							null_Pos = mid;
+							this.style.top = this.offsetTop+oH/R+'px';
+						break;
+						case -1:
+							mid = this.pos;
+							this.pos = null_Pos;
+							null_Pos = mid;
+							this.style.left = this.offsetLeft+oW/C+'px';
+						break;
+						case 1:
+							mid = this.pos;
+							this.pos = null_Pos;
+							null_Pos = mid;
+							this.style.left = this.offsetLeft-oW/C+'px';
+						break;
+						case R:
+							mid = this.pos;
+							this.pos = null_Pos;
+							null_Pos = mid;
+							this.style.top = this.offsetTop-oH/R+'px';
+						break;
+					}
+					for (var j = 0; j < aSpan.length; j++) {
+						if (toDub(aSpan[j].pos) != pos_arr[j].substring(0,2)) {
+							return;
+						}else{
+							if (j == aSpan.length-1) {
+								setTimeout(function(){
+									alert('恭喜过关');
+								},100)
+							}
+						}
+					}
+				}	
+			}
+		}
+		
+		
+		
+
+	}
+
+</script>
+</head>
+<body>
+    <div></div>
+    <br>
+    <p>
+    	<input type="button" value="开始游戏" class="start">
+    	<input type="button" value="快速复原" class="reset">
+    </p>
+    <b id="notice">
+    	<i id="close">&times;</i>
+    	1、单击移动图片位置。
+    </b>
+</body>
+</html>

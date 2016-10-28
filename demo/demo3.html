@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<style>
+	*{
+		padding: 0;
+		margin: 0;
+		list-style: none;
+	}
+	.btn{
+		text-align: center;
+		margin-top: 50px;
+	}
+	.img_list{
+		width: 300px;
+		height: 400px;
+		position: relative;
+		margin: 20px auto;
+		border: 1px solid green;
+	}
+	.img_list li{
+		width: 300px;
+		height: 400px;
+		position: absolute;
+		left: 0;
+		top: 0;
+		line-height: 400px;
+		text-align: center;
+		font-size: 200px;
+		transition: 1s all ease;
+		opacity: 0;
+		background-size: 100% 100%;
+	}
+	.img_list li:nth-child(1){
+		background: url(img3/l1.jpg) no-repeat;
+	}
+	.img_list li:nth-child(2){
+		background: url(img3/l2.jpg) no-repeat;
+	}
+	.img_list li:nth-child(3){
+		background: url(img3/l3.jpg) no-repeat;
+	}
+	.img_list li:nth-child(4){
+		background: url(img3/l4.jpg) no-repeat;
+	}
+	.img_list li:nth-child(5){
+		background: url(img3/l5.jpg) no-repeat;
+	}
+	.img_list li:nth-child(6){
+		background: url(img3/l6.jpg) no-repeat;
+	}
+	.img_list li:nth-child(7){
+		background: url(img3/l7.jpg) no-repeat;
+	}
+	.img_list li:nth-child(8){
+		background: url(img3/l8.jpg) no-repeat;
+	}
+	.img_list .prev{
+		transform: perspective(800px) rotateY(45deg);
+		left: -300px;
+		opacity: 1;
+	}
+	.img_list .prev2{
+		transform: perspective(800px) rotateY(45deg);
+		left: -600px;
+	}
+	.img_list .now{
+		z-index: 1;
+		opacity: 1;
+	}
+	.img_list .next{
+		transform: perspective(800px) rotateY(-45deg);
+		left: 300px;
+		opacity: 1;
+	}
+	.img_list .next2{
+		transform: perspective(800px) rotateY(-45deg);
+		left: 600px;
+	}
+</style>
+<script>
+	window.onload = function(){
+		var oPrev = document.querySelectorAll('input')[0];
+		var oNext = document.querySelectorAll('input')[1];
+		var aLi = document.querySelectorAll('li');
+
+		var arr = ['prev','now','next','next2','','prev2'];
+		var bOk = true;
+
+		oNext.onclick = function(){
+			if (bOk) {
+				arr.unshift(arr.pop());
+				change();
+			}
+			bOk = false;
+		}
+		oPrev.onclick = function(){
+			if (bOk) {
+				arr.push(arr.shift());
+				change();
+			}
+			bOk = false;
+		}
+		function change(){
+			for (var i = 0; i < aLi.length; i++) {
+				aLi[i].className = arr[i];
+			}
+		}
+
+		var oNow = document.querySelector('.now');
+		oNow.addEventListener('transitionend',function(){
+			bOk = true;
+		},false)
+	}
+</script>
+</head>
+<body>
+	<div class="btn">
+		<input type="button" value="上一个" />
+		<input type="button" value="下一个" />
+	</div>
+    <ul class="img_list">
+    	<li class="prev"></li>
+    	<li class="now"></li>
+    	<li class="next"></li>
+    	<li class="next2"></li>
+    	<li></li>
+    	<li></li>
+    	<li></li>
+    	<li class="prev2"></li>
+    </ul>
+</body>
+</html>
