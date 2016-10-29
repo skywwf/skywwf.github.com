@@ -225,6 +225,7 @@ section{
     display: none;
     width: 100%;
     position: absolute;
+    background-color: #ccc;
     bottom:20%;
     height: 10px;
     left: 0;
@@ -254,6 +255,7 @@ section{
     top: 120px;
     left: -64px;
     color: #fff;
+    text-shadow: 0 0 0px #fff;
     text-align: center;
     transform: rotate(-45deg);
     text-align: right;
@@ -273,7 +275,7 @@ section{
     color: #000;
     font-weight: bold;
     margin-left: -50%;
-    text-shadow: 0 0 10px;
+    text-shadow: 0 0 0px #fff;
     -webkit-transition: all 0.5s ease-in;
     transition: all 0.5s ease-in;
 }
@@ -337,6 +339,7 @@ section{
 }
 #game_box img{
     width: 64px;
+    height:64px;
     transition:0.3s all ease;
 }
 #game_box a{
@@ -380,6 +383,7 @@ section{
     float: left;
     margin-left: 50px;
     margin-bottom: 20px;
+    position: relative;
 }
 
 .game_list li img:hover{
