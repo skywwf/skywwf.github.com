@@ -58,14 +58,14 @@ $.fn.extend({
 
 $(function(){
 	// 预加载
-	var img_arr = ['bg0_1','bg0_2','bg1_1','bg1_1','logo','nav'];
+	var img_arr = ['bg0_1','bg0_2','bg1_1','bg1_1'];
 	var count = 0;
-	for (var i = 0; i < 6; i++) {
+	for (var i = 0; i < img_arr.length; i++) {
 		var oImg = new Image();
-		oImg.src = 'img/'+img_arr[i]+'.png';
+		oImg.src = 'img/'+img_arr[i]+'.jpg';
 		oImg.onload = function(){
 			count++;
-			if (count == 6) {
+			if (count == img_arr.length) {
 				$('#img_loading').css('display','none');
 				$('.container').css('display','block');
 			}

@@ -1,0 +1,29 @@
+function Diefish(type){
+	this.type = type;
+	this.x = 0;
+	this.y = 0;
+	this.w = 0;
+	this.h = 0;
+	this.rotate = 0;
+	this.cur = 4;
+	this.move();
+}
+Diefish.prototype.draw = function(gd){
+	gd.save();
+	gd.translate(this.x,this.y);
+	gd.rotate(d2a(this.rotate));
+	if (this.rotate<45) {
+		gd.scale(-1,1);
+	}
+	gd.drawImage(JSON['fish'+this.type],this.w*this.cur,0,this.w,this.h,-this.w/2,-this.h/2,this.w,this.h);
+	gd.restore();
+}
+Diefish.prototype.move = function(){
+	var _this = this;
+	setInterval(function(){
+		_this.cur++
+		if (_this.cur == 8) {
+			_this.cur = 4;
+		}
+	},100);
+}

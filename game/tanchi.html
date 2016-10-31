@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>贪吃蛇</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<style>
+	canvas{
+		background-color: #ccc;
+		display: block;
+		margin: 0 auto;
+	}
+</style>
+<script>
+	function rnd(n,m){
+		return Math.floor(Math.random()*(m-n)+n);
+	}
+	function Rect(){
+		this.x = 10+rnd(1,19)*20;
+		this.y = 10+rnd(1,19)*20;
+	}
+	Rect.prototype.draw = function(gd,color){
+		gd.beginPath();
+		gd.fillStyle = color;
+		gd.arc(this.x,this.y,10,0,7);
+		gd.fill();
+	}
+	window.onload =function(){
+		var oC = document.querySelector('canvas');
+		var gd = oC.getContext('2d');
+		var x = 10;
+		var y = 10;
+		var dir = 0;
+		//转向开关
+		var bOk = true;
+		gd.beginPath();
+		gd.fillStyle = 'red';
+		gd.arc(x,y,10,0,7);
+		gd.fill();
+		// 创造新的点
+		var newOne = [];
+		var oRect = new Rect();
+		newOne.push(oRect);
+		// 存坐标
+		var pointArr = [];
+		// 存对象
+		var rectArr = [];
+
+		setInterval(function(ev){
+			gd.clearRect(0,0,oC.width,oC.height);
+			switch(dir){
+				case 1:
+					x-=20;
+				break;
+				case 2:
+					y-=20;
+				break;
+				case 3:
+					x+=20;
+				break;
+				case 4:
+					y+=20;
+				break;
+				default :
+					x+=20;
+				break;
+			} 
+			
+			for (var i = 0; i < newOne.length; i++) {
+				for (var j = 0; j < pointArr.length; j++) {
+					if(pointArr[j].x == newOne[i].x && pointArr[j].y == newOne[i].y){
+						newOne[i].x = 10+rnd(1,19)*20;
+						newOne[i].y = 10+rnd(1,19)*20;
+						j = -1;
+					}
+				}
+				newOne[i].draw(gd,'yellow');
+				if (x == newOne[i].x && y == newOne[i].y) {
+					newOne.shift();
+					var nRect = new Rect();
+					newOne.push(nRect);
+					var oRect = new Rect();
+					rectArr.push(oRect);
+				}
+			}
+			pointArr.push({x:x,y:y})
+			if (pointArr.length!=rectArr.length+1) {
+				pointArr.shift();
+			}
+			for (var i = 0; i < rectArr.length; i++) {
+				rectArr[i].x = pointArr[i].x;
+				rectArr[i].y = pointArr[i].y;
+				rectArr[i].draw(gd,'green');
+			}
+			gd.beginPath();
+			gd.fillStyle = 'red';
+			gd.arc(x,y,10,0,7);
+			gd.fill();
+			for (var i = 0; i < rectArr.length; i++) {
+				if (x==rectArr[i].x && y==rectArr[i].y) {
+					alert('撞上了');
+				}
+			}
+			if (x<0 || y < 0 || x > oC.width || y > oC.height) {
+				alert('撞上了');
+			}
+			if (rectArr.length == 399) {
+				alert('恭喜过关');
+			}
+		},200);
+		document.onkeydown = function(ev){
+			switch(ev.keyCode){
+				case 37:
+					if (dir==3) {
+						return;
+					}
+					dir = 1;
+				break;
+				case 38:
+					if (dir==4) {
+						return;
+					}
+					dir = 2;
+				break;
+				case 39:
+					if (dir==1) {
+						return;
+					}
+					dir = 3;
+				break;
+				case 40:
+					if (dir==2) {
+						return;
+					}
+					dir = 4;
+				break;
+			}
+		}
+	}
+</script>
+</head>
+<body>
+    <canvas width="400" height="400"></canvas>
+</body>
+</html>

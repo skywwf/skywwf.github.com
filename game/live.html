@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<style>
+	*{
+		margin: 0;
+		padding: 0;
+	}
+	.game_bg{
+		width:454px;
+		height: 456px;
+		background: #c0c0c0;
+		padding-top: 38px;
+		padding-left: 52px;
+		margin: 50px auto 0;
+	}
+	i{
+		font-style: normal;
+	}
+	.game_box{
+		width: 400px;
+		height: 420px;
+	}
+	.header{
+		height: 27px;
+		width: 100%;
+		border-radius: 10px 10px 0px 0px;
+		background: linear-gradient(#e3e3e3,#9b9b9b);
+		padding-top: 3px;
+	}
+	.header ul{
+		width: 226px;
+		margin:0 auto;
+	}
+	.header li{
+		display: inline-block;
+		width: 100px;
+		height: 22px;
+		border:1px solid #717171;
+		text-align: center;
+		line-height: 22px;
+		background: #787878;
+		border-radius: 14px;
+		color:#fff;
+	}
+	.game{
+		height: 365px;
+		background-color: #444;
+		overflow: hidden;
+		position: relative;
+	}
+	.last{
+		height: 17px;
+		background: linear-gradient(#e4e4e4,#aaa);
+		padding-top: 8px;
+	}
+	#gamer{
+		position: absolute;
+		left: 180px;
+		top: 160px;
+		width: 30px;
+		height: 30px;
+		border-radius: 50%;
+		background: linear-gradient(#e0e0e0,#aaa);
+		cursor: none;
+	}
+	span{
+		position: absolute;
+		width: 5px;
+		height: 5px;
+		background-color: #0f0;
+	}
+	.scall_bg{
+		width: 370px;
+		height: 10px;
+		background: #ddd;
+		margin:0px auto;
+		border-radius: 4px;
+		overflow: hidden;
+	}
+	.scall_bg p{
+		background: #3787e0;
+		height: 10px;
+		width: 0%;
+	}
+	#dialog{
+		position: absolute;
+		text-align: center;
+		width: 100%;
+		height: 100%;
+		padding-top: 120px;
+		left: 0;
+		top: 0;
+		background-color: rgba(0,0,0,0.5);
+	}
+	#dialog h2{
+		text-align: center;
+		font-size: 30px;
+		line-height: 40px;
+	}
+	#dialog input{
+		width: 80px;
+		height: 40px;
+	}
+</style>
+<script src="game_js/move.js"></script>
+<script>
+	function rnd(n,m){
+		return Math.floor(parseInt(Math.random()*(m-n)+n));
+	}
+	window.onload = function(){
+		var oBox = document.getElementById('zone');
+		var oDiv = document.getElementById('gamer');
+		var oDiff = document.getElementById('diffcult');
+		var oScour = document.getElementById('scour');
+		var oBar = document.getElementById('bar');
+		var oDia = document.getElementById('dialog');
+		var oStart = document.getElementById('start');
+		var disx = oBox.offsetLeft;
+		var oDivW = oDiv.offsetWidth;
+		var disy = oBox.offsetTop;
+		var N = 10;
+		var nBarW = 0;
+		window.onresize = function(){
+			disx = oBox.offsetLeft;
+			oDivW = oDiv.offsetWidth;
+			disy = oBox.offsetTop;
+		}
+		oStart.onclick = function(){
+			oDia.style.display = 'none';
+			oDiv.style.display = 'block';
+			tab();
+		}
+		function tab(){
+			c2mSpan();
+			//积分
+			var count = 0;
+			oScour.timer = setInterval(function(){
+				count+=1;
+				oScour.innerHTML = count/10;
+			},100)
+			//创建运动span 一次10个
+			function c2mSpan(){
+				for (var i = 0; i < N; i++) {
+					var oSpan = document.createElement('span');
+					oBox.appendChild(oSpan);
+					(function(oSpan){
+						switch (rnd(1,5)){
+							case 1:
+								oSpan.style.left = 0;
+								oSpan.style.top = rnd(0,361)+'px';
+								switch (rnd(1,4)){
+									case 1:
+										move(oSpan,{
+											left:400,
+											top:rnd(0,361)
+										},{complete:function(){oBox.removeChild(oSpan);}})
+									break;
+									case 2:
+										move(oSpan,{
+											top:365,
+											left:rnd(0,400)
+										},{complete:function(){oBox.removeChild(oSpan);}})
+									break;
+									case 3:
+										move(oSpan,{
+											top:-5,
+											left:rnd(0,400)
+										},{complete:function(){oBox.removeChild(oSpan);}})
+									break;
+								}
+							break;
+							case 2:
+								oSpan.style.top = 0;
+								oSpan.style.left = rnd(0,401)+'px';
+								switch (rnd(1,4)){
+									case 1:
+										move(oSpan,{
+											left:400,
+											top:rnd(0,361)
+										},{complete:function(){oBox.removeChild(oSpan);}})
+									break;
+									case 2:
+										move(oSpan,{
+											top:365,
+											left:rnd(0,400)
+										},{complete:function(){oBox.removeChild(oSpan);}})
+									break;
+									case 3:
+										move(oSpan,{
+											left:-5,
+											top:rnd(0,361)
+										},{complete:function(){oBox.removeChild(oSpan);}})
+									break;
+								}
+							break;
+							case 3:
+								oSpan.style.left = 395+'px';
+								oSpan.style.top = rnd(0,361)+'px';
+								switch (rnd(1,4)){
+									case 1:
+										move(oSpan,{
+											left:-5,
+											top:rnd(0,361)
+										},{complete:function(){oBox.removeChild(oSpan);}})
+									break;
+									case 2:
+										move(oSpan,{
+											top:400,
+											left:rnd(0,400)
+										},{complete:function(){oBox.removeChild(oSpan);}})
+									break;
+									case 3:
+										move(oSpan,{
+											top:-5,
+											left:rnd(0,400)
+										},{complete:function(){oBox.removeChild(oSpan);}})
+									break;
+								}
+							break;
+							case 4:
+								oSpan.style.top = 360+'px';
+								oSpan.style.left = rnd(0,401)+'px';
+								switch (rnd(1,4)){
+									case 1:
+										move(oSpan,{
+											left:400,
+											top:rnd(0,361)
+										},{complete:function(){oBox.removeChild(oSpan);}})
+									break;
+									case 2:
+										move(oSpan,{
+											top:-5,
+											left:rnd(0,400)
+										},{complete:function(){oBox.removeChild(oSpan);}})
+									break;
+									case 3:
+										move(oSpan,{
+											left:-5,
+											top:rnd(0,361)
+										},{complete:function(){oBox.removeChild(oSpan);}})
+									break;
+								}
+							break;
+						}
+					})(oSpan)
+					
+				}}
+			oBox.timer1 = setInterval(function(){
+				c2mSpan();
+			},2000)
+			oBox.onmousemove = function(ev){
+				var ev = ev || event;
+				var l = ev.clientX-disx-oDivW/2;
+				var t = ev.clientY-disy-oDivW/2;
+				oDiv.style.left = l +'px';
+				oDiv.style.top = t +'px';
+				oDiv.l = l;
+				oDiv.t = t;
+			}
+			// 随时碰撞检测
+			oBox.timer2 = setInterval(function(){
+				var aSpan = oBox.getElementsByTagName('span');
+				for (var i = 0; i < aSpan.length; i++) {
+					// span的上下左右的位置
+					var sl1 = aSpan[i].offsetLeft;
+					var sl2 = sl1+5;
+					var st1 = aSpan[i].offsetTop;
+					var st2 = st1+5;
+					// oDiv的上下左右的位置
+					var ol1 = oDiv.l;
+					var ol2 = ol1+30;
+					var ot1 = oDiv.t;
+					var ot2 = ot1+30;
+					if (sl2>ol1 && sl1<ol2 && st2>ot1 && st1<ot2) {
+						clearInterval(oBox.timer1);
+						clearInterval(oBox.timer2);
+						clearInterval(oScour.timer);
+						for (var j = 0; j < aSpan.length; j++) {
+							clearInterval(aSpan[j].timer);
+							oBox.removeChild(aSpan[j]);
+							j--;
+						}
+						oDiv.style.display = 'none';
+						oDia.style.display = 'block';
+					}else{
+						nBarW+=0.02;
+						oBar.style.width = nBarW+'%';
+						if (nBarW>=100) {
+							N+=5;
+							oDiff.innerHTML = (N-5)/5;
+							nBarW = 0;
+						}
+					}
+				}
+			},30)
+		}
+		
+
+
+	}
+</script>
+</head>
+<body>
+<div class="game_bg">
+	<div class="game_box">
+    	<div class="header">
+    		<ul>
+    			<li>难度：<i id="diffcult">1</i></li>
+    			<li>得分：<i id="scour">0</i></li>
+    		</ul>
+    	</div>
+    	<div class="game" id="zone">
+    		<div id="gamer"></div>
+    		<div id="dialog">
+    			<h2>GAME OVER</h2>
+    			<input id="start" type="button" value="开始游戏">
+    		</div>
+    	</div>
+    	<div class="last">
+    		<div class="scall_bg">
+    			<p id="bar"></p>
+    		</div>
+    	</div>
+    </div>
+</div>
+    
+</body>
+</html>

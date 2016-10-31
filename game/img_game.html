@@ -112,16 +112,12 @@
 					if (i == R-1 && j == C-1) {continue;}
 					var oSpan = document.createElement('span');
 					oSpan.style.backgroundImage = "url(img/0.png)";
-
 					oSpan.style.width = oW/C+'px';
 					oSpan.style.height = oH/R+'px';
 					oSpan.style.left = j*oW/C+'px';
-					oSpan.r_left = j*oW/C;
 					oSpan.style.top = i*oH/R+'px';
-					oSpan.r_top = i*oH/R;
 					oSpan.pos = count++;
 					oSpan.oOk = cOk++;
-					
 					oSpan.style.backgroundPosition = -j*oW/C+'px '+(-i*oH/R)+'px';
 					pos_arr.push(toDub(oSpan.oOk)+''+-j*oW/C+'px '+(-i*oH/R)+'px');
 					r_arr.push(-j*oW/C+'px '+(-i*oH/R)+'px');
@@ -167,6 +163,9 @@
 							this.pos = null_Pos;
 							null_Pos = mid;
 							this.style.top = this.offsetTop-oH/R+'px';
+						break;
+						default:
+							return;
 						break;
 					}
 					for (var j = 0; j < aSpan.length; j++) {
