@@ -789,6 +789,7 @@
     }, false);
         
 })(document, window);
+impress('impress').init();
 //代码整理：懒人之家 www.lanrenzhijia.com
 // THAT'S ALL FOLKS!
 //

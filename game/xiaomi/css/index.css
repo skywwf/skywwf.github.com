@@ -580,7 +580,9 @@
 .al-box .al-box-r dd.pic4{
 	background:url(../img/shuzi4.png) no-repeat 30px center;}
 .al-box .al-box-r dd.pic5{
-	background:url(../img/shuzi5.png) no-repeat 30px center;}
+	background:url(../img/shuzi5.png) no-repeat 30px center;
+	border-bottom:none;
+}
 .al-box .al-box-r dd .oner1{
 	width:95px;
 	height:102px;

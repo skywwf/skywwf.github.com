@@ -1,10 +1,33 @@
 
-function SkyF(){};
-
-SkyF.prototype = {
-
+function SkyF(){
+	this.name = '张飞';
+	this.phone = 15617762086;
+	this.email = '15617762086@163.com';
+	this.qq = 641768249;
 };
 
+SkyF.prototype = {
+	showName :function(){
+		return this.name;
+	},
+	showPhone:function(){
+		return this.phone;
+	},
+	showEmail:function(){
+		return this.email;
+	},
+	showQq:function(){
+		return this.qq;
+	}
+};
+var oMe = new SkyF();
+var myInfo = [
+		{name:'name',value:oMe.showName()},
+		{name:'qq',value:oMe.showQq()},
+		{name:'phone',value:oMe.showPhone()},
+		{name:'email',value:oMe.showEmail()}
+	]
+console.table(myInfo);
 
 $.fn.extend({
 	wheelMove:function(n){
