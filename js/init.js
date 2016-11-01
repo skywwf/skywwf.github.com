@@ -139,7 +139,6 @@ $(function(){
 		$('.l_step').removeClass('present');
 		$(this).parent('.l_step').addClass('present');
 		var index = $(this).index('.circle');
-		console.log(index);
 		$('.impress1').css('margin-left',cH/2-174*index-128);
 	})
 	//game模块
