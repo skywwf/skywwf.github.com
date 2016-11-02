@@ -89,7 +89,7 @@ $(function(){
 		oImg.onload = function(){
 			count++;
 			$('.bar').css('width',350*count/img_arr.length)
-			$('.progress').html(100*count/img_arr.length+'%')
+			$('.progress').html((100*count/img_arr.length).toFixed(2)+'%')
 			if (count == img_arr.length) {
 				$('#img_loading').css('display','none');
 				$('.container').css('display','block');
