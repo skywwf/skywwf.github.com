@@ -93,6 +93,12 @@ $(function(){
 			if (count == img_arr.length) {
 				$('#img_loading').css('display','none');
 				$('.container').css('display','block');
+				clearTimeout($('#home').get(0).timer);
+				$('#home').get(0).timer = setTimeout(function(){
+				$('#home').css('display','block');
+				$('.home_h2 h2').addClass('bounceInDown');
+				$('.home_h2 p').addClass('bounceInLeft');
+				},500)
 			}
 		}
 		oImg.error = function(){
