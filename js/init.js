@@ -27,7 +27,7 @@ var myInfo = [
 		{name:'phone',value:oMe.showPhone()},
 		{name:'email',value:oMe.showEmail()}
 	]
-console.table(myInfo);
+console.log(1236546546545456);
 
 $.fn.extend({
 	wheelMove:function(n){
@@ -81,13 +81,15 @@ $.fn.extend({
 
 $(function(){
 	// 预加载
-	var img_arr = ['bg0_1','bg0_2','bg1_1','bg1_1'];
+	var img_arr = ['bg0_1.jpg','bg0_2.jpg','bg1_1.jpg','bg1_2.jpg','1.png','2.png','3.png','4.png','5.png','132673.png','app_block.png','app_fish.png','app_mi.png','app_pic.png','app_soul.png','bar.png','demo1.jpg','demo2.jpg','demo3.jpg','demo4.jpg','demo5.jpg','demo6.jpg','ipad.png','logo.png','nav.png'];
 	var count = 0;
 	for (var i = 0; i < img_arr.length; i++) {
 		var oImg = new Image();
-		oImg.src = 'img/'+img_arr[i]+'.jpg';
+		oImg.src = 'img/'+img_arr[i];
 		oImg.onload = function(){
 			count++;
+			$('.bar').css('width',350*count/img_arr.length)
+			$('.progress').html(100*count/img_arr.length+'%')
 			if (count == img_arr.length) {
 				$('#img_loading').css('display','none');
 				$('.container').css('display','block');

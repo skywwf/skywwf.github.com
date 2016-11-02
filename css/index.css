@@ -9,6 +9,12 @@ body{
     overflow: hidden;
     font-family: 'Microsoft yahei';
 }
+.fl{
+    float: left;
+}
+.fr{
+    float: right;
+}
 a{
     text-decoration: none;
 }
@@ -19,6 +25,65 @@ section{
     width: 100%;
     height: 100%;
 }
+/*loading模块*/
+#img_loading{
+    width: 380px;
+    height: 90px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -190px;
+    margin-top: -45px;
+    background-color: #eee;
+    z-index: 1;
+    border-radius: 4px;
+    overflow: hidden;
+}
+.loading_data p{
+    line-height: 36px;
+    color: #fff;
+}
+.loading_data{
+    overflow: hidden;
+    padding: 0 12px;
+    border-bottom: 1px solid #171717;
+    background: linear-gradient(#4c4c4c,#2f2f2f);
+    background: -webkit-linear-gradient(#4c4c4c,#2f2f2f);
+    background: -o-linear-gradient(#4c4c4c,#2f2f2f);
+    background: -moz-linear-gradient(#4c4c4c,#2f2f2f);
+    background: linear-gradient(#4c4c4c,#2f2f2f);
+}
+.loading_box{
+    padding:9px;
+    background: linear-gradient(#353535,#262626);
+    background: -webkit-linear-gradient(#353535,#262626);
+    background: -o-linear-gradient(#353535,#262626);
+    background: -moz-linear-gradient(#353535,#262626);
+    background: linear-gradient(#353535,#262626);
+}   
+.bar_box{
+    padding-top: 4px;
+    height: 26px;
+    position: relative;
+    border:1px solid #000;
+    border-radius: 4px;
+    background: linear-gradient(#1b1b1b,#202020);
+    background: -webkit-linear-gradient(#1b1b1b,#202020);
+    background: -o-linear-gradient(#1b1b1b,#202020);
+    background: -moz-linear-gradient(#1b1b1b,#202020);
+    background: linear-gradient(#1b1b1b,#202020);
+    }
+.bar{
+    position: absolute;
+    left: 5px;
+    width: 0px;
+    border:1px solid #051729;
+    border-radius: 4px;
+    height: 20px;
+    background:url(../img/bar.png) repeat-x;
+}
+
+//内容模块
 .container,.left1,.left2,.left3,.left4,.right1,.right2,.right3,.right4{
     width: 100%;
     height: 100%;
@@ -175,6 +240,7 @@ section{
     top:0;
     z-index: 0;
     color:#fff;
+    display: none;
 }
 .home_h2{
     width: 310px;
