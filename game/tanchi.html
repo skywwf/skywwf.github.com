@@ -12,6 +12,7 @@
 		background-color: #ccc;
 		display: block;
 		margin: 0 auto;
+		border:10px solid #666;
 	}
 </style>
 <script>
@@ -101,11 +102,21 @@
 			gd.fill();
 			for (var i = 0; i < rectArr.length; i++) {
 				if (x==rectArr[i].x && y==rectArr[i].y) {
-					alert('撞上了');
+					alert('撞上了,请重新来过');
+					pointArr = [];
+					rectArr = [];
+					dir = 0;
+					x = 10;
+					y = 10;
 				}
 			}
 			if (x<0 || y < 0 || x > oC.width || y > oC.height) {
-				alert('撞上了');
+				alert('撞上了,请重新来过');
+				pointArr = [];
+				rectArr = [];
+				dir = 0;
+				x = 10;
+				y = 10;
 			}
 			if (rectArr.length == 399) {
 				alert('恭喜过关');

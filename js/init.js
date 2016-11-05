@@ -22,10 +22,10 @@ SkyF.prototype = {
 };
 var oMe = new SkyF();
 var myInfo = [
-		{name:'name',value:oMe.showName()},
-		{name:'qq',value:oMe.showQq()},
-		{name:'phone',value:oMe.showPhone()},
-		{name:'email',value:oMe.showEmail()}
+		{name:'Designer',value:oMe.showName()},
+		{name:'QQ',value:oMe.showQq()},
+		{name:'Phone',value:oMe.showPhone()},
+		{name:'Eemail',value:oMe.showEmail()}
 	]
 console.table(myInfo);
 
