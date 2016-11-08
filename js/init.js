@@ -25,7 +25,7 @@ var myInfo = [
 		{name:'Designer',value:oMe.showName()},
 		{name:'QQ',value:oMe.showQq()},
 		{name:'Phone',value:oMe.showPhone()},
-		{name:'Eemail',value:oMe.showEmail()}
+		{name:'Email',value:oMe.showEmail()}
 	]
 console.table(myInfo);
 
