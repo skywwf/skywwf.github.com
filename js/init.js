@@ -1,8 +1,8 @@
 
 function SkyF(){
 	this.name = '张飞';
-	this.phone = 15617762086;
-	this.email = '15617762086@163.com';
+	this.phone = 13691403754;
+	this.email = 'webzhangfei@163.com';
 	this.qq = 641768249;
 };
 
