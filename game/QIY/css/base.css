@@ -1,0 +1,68 @@
+@charset "utf-8";
+/* CSS Document */
+
+*{ margin:0; padding:0;}
+h1,h2,h3,h4,h5,h6{ font-weight:normal; font-size:12px;}
+li{ list-style:none;}
+a{ text-decoration:none; color:#000;}
+stong{ font-weight:normal;}
+i,em{ font-style:normal;}
+/*清浮动的伪类写法 这是最常用的清浮动方法*/
+.clearfix:after{ display:block; content:''; clear:both;}
+/*下面是处理清浮动ie6兼容的问题*/
+.clearfix{ zoom:1;}
+.fl{float:left;}
+.fr{float:right;}
+/*img存在3px的bug,解决办法如下*/
+img{ vertical-align:top;}
+input{outline:none;}
+img{border:none;}
+.fz12{
+	font-size:12px;}
+
+p.one{
+	padding:6px 0 0 5px;
+	font-size:12px;
+	line-height:22px;}
+p.one a{
+	color:#333;}
+p.two{
+	font-size:12px;
+	line-height:22px;
+	padding-left:5px;
+	color:#999;}
+.base_h5{
+	font-weight:bold;
+	color:#699f00;
+	font-size:28px;
+	background:url(../img/lvsan.png) no-repeat left center;
+	padding-left:20px;}
+.base_h5 a{
+	font-size:12px;
+	color:#699f00;
+	font-weight:normal;
+	}
+.base_li{
+	width:180px;
+	height:154px;
+	background:#f2f2f2;
+	border-bottom:1px solid #ededed;}
+.mgb15{
+	margin-bottom:15px;}
+.base_li0{
+	width:180px;
+	height:135px;
+	border-bottom:1px solid #ebebeb;
+	background:#f2f2f2;}
+
+
+
+
+
+
+
+
+
+
+
+
