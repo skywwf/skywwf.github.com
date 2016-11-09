@@ -17,8 +17,14 @@ window.onload = function(){
 	var downX = 0;
 	var upX = 0;
 	var count = 1;
+	var timer = null;
 	oUl.addEventListener('touchstart',function(ev){
-		if (!bOk) {return}
+		if (!bOk) {
+			timer = setTimeout(function(){
+				bOk = true;
+			},300)
+			return
+		}
 			bOk = false;
 		oUl.style.WebkitTransition = 'none';
 		downX = ev.targetTouches[0].clientX
@@ -34,6 +40,7 @@ window.onload = function(){
 		}
 		function fnend(ev){
 			if (id == ev.changedTouches[0].identifier) {
+				bOk =  false;
 				upX = ev.changedTouches[0].clientX;
 				document.removeEventListener('touchmove',fnmove,false);
 				document.removeEventListener('touchend',fnend,false);
