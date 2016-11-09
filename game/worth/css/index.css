@@ -86,19 +86,19 @@ header a{
 	background-size: 100% 100%;
 }
 .bg_list .one1{
-	background-image: url(../img/bg0.png);
+	background-image: url(../img/bg0.jpg);
 }
 .bg_list .one2{
-	background-image: url(../img/jay1.png);
+	background-image: url(../img/jay1.jpg);
 }
 .bg_list .one3{
-	background-image: url(../img/jay2.png);
+	background-image: url(../img/jay2.jpg);
 }
 .bg_list .one4{
-	background-image: url(../img/jay3.png);
+	background-image: url(../img/jay3.jpg);
 }
 .bg_list .one5{
-	background-image: url(../img/jay4.png);
+	background-image: url(../img/jay4.jpg);
 }
 .point_list{
 	position: absolute;
