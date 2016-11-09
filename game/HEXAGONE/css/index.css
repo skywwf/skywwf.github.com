@@ -18,7 +18,9 @@ li{
  	background:url(../img/icon1.png) no-repeat center; 
  	background-size:50%;}
 .right{ 
-	border-left:2px solid #455b72;}
+	border-left:2px solid #455b72;
+	overflow: hidden;
+}
 .head h1{ 
 	-webkit-box-flex:1;
  	color:#FFF; 
