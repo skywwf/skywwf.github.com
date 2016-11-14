@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>十字运动展示</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<style>
+	*{
+		padding: 0;
+		margin: 0;
+	}
+	body{
+		overflow: hidden;
+	}
+	.container{
+		width: 330px;
+		margin: 200px auto 0;
+		position: relative;
+		height: 630px;
+	}
+	.container div{
+		text-align: center;
+		width: 100px;
+		height: 100px;
+		margin: 5px;
+		background-color: #ccc;
+		float: left;
+		transition: 1s;
+	}
+	.container div p{
+		background-color: green;
+		position: absolute;
+		z-index: 10;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		z-index: -1;
+		transition: 1s;
+	}
+	.container div.active{
+		background-color: red;
+	}
+</style>
+<script>
+	window.onload = function(){
+		var oDiv = document.getElementsByTagName('div')[0];
+		var aDiv = oDiv.querySelectorAll('div');
+		var aP = document.querySelectorAll('p');
+		// 每次left位移的基础量
+		var nWid = aDiv[0].offsetWidth+10;
+		// 每次top位移的基础量
+		var nHeig = aDiv[0].offsetHeight+10;
+		
+		// 控制div中上下左右的p的位置信息数组
+		var posArr = [{left:0,top:-nHeig},{left:nWid,top:0},{left:0,top:nHeig},{left:-nWid,top:0}];
+		// 保存初始的div的位置信息的数组
+		var divArr = []
+
+		// 布局转换，同时存div的初始位置数据
+		for (var i = 0; i < aDiv.length; i++) {
+			aDiv[i].style.left = aDiv[i].offsetLeft+'px';
+			aDiv[i].style.top = aDiv[i].offsetTop+'px';
+			divArr.push({left:aDiv[i].offsetLeft,top:aDiv[i].offsetTop});
+		}
+		//布局转换定位后写，否则会出问题。
+		for (var i = 0; i < aDiv.length; i++) {
+			aDiv[i].style.margin = 0;
+			aDiv[i].style.position = 'absolute';
+		}
+
+		// 循环所有的div给div加事件，
+		for (var i = 0; i < aDiv.length; i++) {
+			// 加索引
+			aDiv[i].index = i;
+			//事件绑定，移入 移出 ，点击
+			aDiv[i].addEventListener('mouseover',function(){
+				this.style.background = 'red';
+			},false)
+			aDiv[i].addEventListener('mouseout',function(){
+				this.style.background = '';
+			},false)
+			aDiv[i].addEventListener('click',function(){
+				//先让所有的div回到初始位置
+				for (var j = 0; j < aDiv.length; j++) {
+					aDiv[j].style.left = divArr[j].left+ 'px';
+					aDiv[j].style.top = divArr[j].top+ 'px';
+				}
+				//让所有的p回到初始位置。
+				for (var j = 0; j < aP.length; j++) {
+					aP[j].style.left = 0;
+					aP[j].style.top = 0;
+				}
+				// 判断点击的对象有active的状态 如果有，则让取消他的状态，回到初始状态，div和p的初始状态由上面的代码负责。
+				if (this.className == 'active') {
+					this.className = '';
+				}else{
+					//如果没有， 则先取消其他对象的状态，让当前对象成为active状态
+					for (var j = 0; j < aDiv.length; j++) {
+						aDiv[j].className = '';
+					}
+					this.className = 'active';
+					//判断每个div和当前点击div的位置，根据不同的位置执行不同的运行信息。
+					for (var i = 0; i < aDiv.length; i++) {
+						switch(i-this.index){
+							case -1:
+								if (i!=2) {
+									aDiv[i].style.left = (divArr[i].left - nWid) + 'px';
+								}
+							break;
+							case -2:
+								if (i!=2 && i!=1) {
+									aDiv[i].style.left = (divArr[i].left - nWid) + 'px';
+								}
+							break;
+							case 1:
+								if (i!=3) {
+									aDiv[i].style.left = (divArr[i].left + nWid) + 'px';
+								}
+							break;
+							case 2:
+								if (i!=3 && i!=4) {
+									aDiv[i].style.left = (divArr[i].left + nWid) + 'px';
+								}
+							break;
+							case 3:
+								aDiv[i].style.top = (divArr[i].top + nHeig) + 'px';
+							break;
+							case -3:
+								aDiv[i].style.top = (divArr[i].top - nHeig) + 'px';
+							break;
+						}
+					}
+					//修改当前点击的div下面的所有p 的left,top值。利用transition达到运动效果。
+					for (var j = 0; j < aP.length; j++) {
+						if (j>=this.index*4 && j<this.index*4+4) {
+							aP[j].style.left = posArr[j-this.index*4].left+'px';
+							aP[j].style.top = posArr[j-this.index*4].top+'px';
+						}
+					}
+				}
+			},false)
+		}
+	}
+</script>
+</head>
+<body>
+	<div class="container">
+		<div>
+			创意设计理念
+			<p class="top"></p>
+			<p class="right"></p>
+			<p class="bottom"></p>
+			<p class="left"></p>
+		</div>
+
+		<div>
+			专业态度
+			<p class="top"></p>
+			<p class="right"></p>
+			<p class="bottom"></p>
+			<p class="left"></p>
+		</div>
+		<div>
+			优质服务
+			<p class="top"></p>
+			<p class="right"></p>
+			<p class="bottom"></p>
+			<p class="left"></p>
+		</div>
+		<div>
+			优势
+			<p class="top"></p>
+			<p class="right"></p>
+			<p class="bottom"></p>
+			<p class="left"></p>
+		</div>
+		<div>
+			技术创新
+			<p class="top"></p>
+			<p class="right"></p>
+			<p class="bottom"></p>
+			<p class="left"></p>
+		</div>
+		<div>
+			客户选择我们的理由
+			<p class="top"></p>
+			<p class="right"></p>
+			<p class="bottom"></p>
+			<p class="left"></p>
+		</div>
+	</div>
+</body>
+</html>
